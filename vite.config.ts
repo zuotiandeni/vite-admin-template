@@ -15,6 +15,10 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    build: {
+        // 指定构建目标为 es2015...这里保持和browserslistrc一致
+        target: ['es2015', 'chrome78', 'firefox60', 'ie11', 'safari17', 'edge17']
+    },
     plugins: [
         vue(),
         vueJsx(),
