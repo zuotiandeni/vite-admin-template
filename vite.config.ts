@@ -12,6 +12,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+import { splitVendorChunkPlugin } from 'vite'
+
 // // lightningcss，用于替代postcss
 // import { browserslistToTargets } from 'lightningcss'
 // // 用于配合lightningcss进行转义，达到对旧版本浏览器的支持
@@ -41,8 +43,9 @@ export default defineConfig({
         }),
         Components({
             resolvers: [ElementPlusResolver()]
-        })
+        }),
         // elementPlus按需加载 end
+        splitVendorChunkPlugin()
     ],
     resolve: {
         alias: {
