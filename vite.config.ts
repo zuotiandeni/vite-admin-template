@@ -29,10 +29,22 @@ import UnoCSS from 'unocss/vite'
 export default defineConfig({
     build: {
         // 指定构建目标为 es2015...这里保持和browserslistrc一致
-        target: ['es2015', 'chrome78', 'firefox60', 'ie11', 'safari17', 'edge17']
+        target: ['es2015', 'chrome78', 'firefox60', 'ie11', 'safari17', 'edge17'],
         // 使用 lightningcss 压缩 css
         // cssMinify: 'lightningcss'，默认使用esbuild
         // cssTarget: 默认与target一致
+        chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
+        minify: 'terser', // Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效
+        terserOptions: {
+            compress: {
+                keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
+                drop_console: true, // 生产环境去除 console
+                drop_debugger: true // 生产环境去除 debugger
+            },
+            format: {
+                comments: false // 删除注释
+            }
+        }
     },
     plugins: [
         vue(),
