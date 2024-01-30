@@ -22,6 +22,9 @@ import { splitVendorChunkPlugin } from 'vite'
 // css 浏览器补全 用于postcss
 import autoprefixer from 'autoprefixer'
 
+// unocss优化
+import UnoCSS from 'unocss/vite'
+
 // https://vitejs.dev/config/
 export default defineConfig({
     build: {
@@ -45,7 +48,8 @@ export default defineConfig({
             resolvers: [ElementPlusResolver()]
         }),
         // elementPlus按需加载 end
-        splitVendorChunkPlugin()
+        splitVendorChunkPlugin(),
+        UnoCSS()
     ],
     resolve: {
         alias: {
