@@ -73,6 +73,9 @@ export default defineConfig({
                     prefix: 'Icon'
                 })
             ],
+            eslintrc: {
+                enabled: true
+            },
             //  自动导入组件类型声明文件位置
             dts: fileURLToPath(new URL('auto-imports.d.ts', import.meta.url))
         }),
