@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
+// import path from 'path'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -12,7 +13,13 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
+// 自动导入图标
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+
 import { splitVendorChunkPlugin } from 'vite'
+
+// const pathSrc = path.resolve(__dirname, 'src')
 
 // // lightningcss，用于替代postcss
 // import { browserslistToTargets } from 'lightningcss'
@@ -54,10 +61,36 @@ export default defineConfig({
         }),
         // elementPlus按需加载 start
         AutoImport({
-            resolvers: [ElementPlusResolver()]
+            // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
+            imports: ['vue', '@vueuse/core', 'pinia', 'vue-router'],
+            // 是否在 vue 模板中自动导入
+            vueTemplate: true,
+            resolvers: [
+                // 自动导入 Element Plus 相关函数，如：ElMessage, ElMessageBox... (带样式)
+                ElementPlusResolver(),
+                // 自动导入图标组件
+                IconsResolver({
+                    prefix: 'Icon'
+                })
+            ],
+            //  自动导入组件类型声明文件位置
+            dts: fileURLToPath(new URL('auto-imports.d.ts', import.meta.url))
         }),
         Components({
-            resolvers: [ElementPlusResolver()]
+            resolvers: [
+                // 自动导入 Element Plus 组件
+                ElementPlusResolver(),
+                // 自动注册图标组件
+                IconsResolver({
+                    enabledCollections: ['ep']
+                })
+            ],
+            // 自动导入组件类型声明文件位置
+            dts: fileURLToPath(new URL('components.d.ts', import.meta.url))
+        }),
+        Icons({
+            // 自动安装图标
+            autoInstall: true
         }),
         // elementPlus按需加载 end
         splitVendorChunkPlugin(),
