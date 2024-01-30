@@ -4,6 +4,7 @@
  */
 const isDark = useDark()
 const toggleDark = () => useToggle(isDark)
+console.log('测试')
 
 onMounted(() => {
     const arr = [1, 3, 4]
