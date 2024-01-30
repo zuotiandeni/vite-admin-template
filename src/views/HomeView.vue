@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+/**
+ * 暗黑模式
+ */
+const isDark = useDark()
+const toggleDark = () => useToggle(isDark)
 
 onMounted(() => {
     const arr = [1, 3, 4]
@@ -8,21 +12,8 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="home">
-        <div class="home-box">测试</div>
-        <el-button type="primary" round>Primary</el-button>
+    <div>
+        <el-switch v-model="isDark" @change="toggleDark" />
     </div>
 </template>
-<style scoped lang="scss">
-.home {
-    width: 200px;
-    height: 300px;
-    display: flex;
-    flex-flow: row nowrap;
-
-    &-box {
-        height: 100%;
-        width: 100%;
-    }
-}
-</style>
+<style scoped lang="scss"></style>
