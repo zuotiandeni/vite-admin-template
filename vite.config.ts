@@ -125,7 +125,7 @@ export default defineConfig({
         preprocessorOptions: {
             scss: {
                 // additionalData 选项允许我们在每个 Sass 文件的顶部引入指定的 SCSS 文件
-                // additionalData: `@import "@/assets/var.scss";` // 这样，定义的变量就可以在任何地方使用了
+                additionalData: `@import "@/assets/styles/var.scss";` // 这样，定义的变量就可以在任何地方使用了
             }
         }
     }
