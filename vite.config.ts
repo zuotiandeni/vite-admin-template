@@ -54,7 +54,9 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./src', import.meta.url))
-        }
+        },
+        // 排除一些会重复依赖的包
+        dedupe: ['vue', '@vue/runtime-core']
     },
     css: {
         // // 默认为postcss，设置为lightningcss，则postcss不会有作用
