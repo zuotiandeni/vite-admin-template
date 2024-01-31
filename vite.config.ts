@@ -87,7 +87,9 @@ export default defineConfig({
         Components({
             resolvers: [
                 // 自动导入 Element Plus 组件
-                ElementPlusResolver(),
+                ElementPlusResolver({
+                    importStyle: 'sass' // 命名空间必须设置这个
+                }),
                 // 自动注册图标组件
                 IconsResolver({
                     enabledCollections: ['ep']
@@ -130,7 +132,7 @@ export default defineConfig({
         preprocessorOptions: {
             scss: {
                 // additionalData 选项允许我们在每个 Sass 文件的顶部引入指定的 SCSS 文件
-                additionalData: `@import "@/assets/styles/var.scss";` // 这样，定义的变量就可以在任何地方使用了
+                additionalData: `@use "@/styles/var.scss" as *;` // 这样，定义的变量就可以在任何地方使用了
             }
         }
     }
