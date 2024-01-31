@@ -1,1 +1,39 @@
-$text: #123325
+// 定义日间的主题颜色
+@use 'sass:map';
+@use 'mixins.scss' as *;
+
+
+$normal-spacing: 16px;
+$small-spacing: 8px;
+$big-spacing: 24px;
+
+// 关闭按钮hover颜色
+$primary-light: #3f6ad8;
+
+// --lcy-bg-color
+$bg-color: () !default;
+$bg-color: map.merge(
+    (
+        '': #f5f5f5,
+        'overlay': #ffffff,
+    ),
+    $bg-color
+);
+
+// --lcy-border-color
+$border-color: () !default;
+$border-color: map.merge(
+    (
+        '': #f6f6f6,
+    ),
+    $border-color
+);
+
+:root {
+    @include set-css-var-value('color-primary-light', $primary-light);
+    @include set-css-var-value('normal-spacing', $normal-spacing);
+    @include set-css-var-value('small-spacing', $small-spacing);
+    @include set-css-var-value('big-spacing', $big-spacing);
+    @include set-component-css-var('bg-color', $bg-color);
+    @include set-component-css-var('border-color', $border-color);
+}

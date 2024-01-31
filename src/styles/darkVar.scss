@@ -1,0 +1,44 @@
+// 定义夜间的主题颜色
+@use 'sass:map';
+@use 'mixins.scss' as *;
+@use 'element-plus/theme-chalk/src/dark/css-vars.scss';
+
+// --lcy-bg-color
+$bg-color: () !default;
+$bg-color: map.merge(
+    (
+        '': #141414,
+        'overlay': #1d1e1f,
+    ),
+    $bg-color
+);
+/*
+
+最终输出的是：
+$bg-color: {
+    '': #141414,
+    'overlay': #1d1e1f,
+}
+
+通过  set-component-css-var 方法
+会生成：
+--lcy-bg-color: #141414
+--lcy-bg-color-overlay: #1d1e1f
+
+*/
+
+// --lcy-border-color
+$border-color: () !default;
+$border-color: map.merge(
+    (
+        '': #58585b,
+    ),
+    $border-color
+);
+
+html.dark {
+    @include set-component-css-var('bg-color', $bg-color);
+    @include set-component-css-var('border-color', $border-color);
+}
+
+

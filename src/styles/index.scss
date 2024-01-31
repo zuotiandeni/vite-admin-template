@@ -1,4 +1,4 @@
-// elementPlus暗黑模式
-@use "element-plus/theme-chalk/src/dark/css-vars.scss" as *;
 @use './normalize.scss';
-@use './base.scss'
+@use './base.scss';
+@use './darkVar.scss';
+@use './var.scss';
