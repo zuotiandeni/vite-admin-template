@@ -17,8 +17,4 @@ onMounted(() => {
         <el-switch v-model="isDark" @change="toggleDark" />
     </div>
 </template>
-<style scoped lang="scss">
-.text {
-    color: $text;
-}
-</style>
+<style scoped lang="scss"></style>

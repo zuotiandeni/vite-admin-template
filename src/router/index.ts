@@ -6,8 +6,22 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'home',
-            component: HomeView
+            name: '/',
+            component: () => import('@/layouts/index.vue'),
+            meta: {
+                title: '工作台'
+            },
+            children: [
+                {
+                    path: '/home',
+                    name: '/home',
+                    component: HomeView,
+                    meta: {
+                        title: '家'
+                    },
+                    children: []
+                }
+            ]
         }
     ]
 })
