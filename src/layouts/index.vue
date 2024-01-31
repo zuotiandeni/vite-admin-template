@@ -9,6 +9,7 @@ import { useNavTabs } from '@/stores/nav-tabs'
 
 import { cloneDeep } from 'lodash-es'
 import LayoutsDefault from './LayoutsDefault.vue'
+import LayoutsClassic from './LayoutsClassic.vue'
 
 const pageConfig = usePageConfig()
 const navTabs = useNavTabs()
@@ -24,6 +25,6 @@ onMounted(() => {
 })
 
 defineOptions({
-    components: { LayoutsDefault }
+    components: { LayoutsDefault, LayoutsClassic }
 })
 </script>

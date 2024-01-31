@@ -67,12 +67,17 @@ defineOptions({
         white-space: nowrap;
     }
 
-    .fold {
+    ::v-deep(.el-icon) {
         font-size: var(--el-font-size-extra-large);
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .fold {
         margin-left: auto;
     }
     .unfold {
-        font-size: var(--el-font-size-extra-large);
         margin: auto;
     }
 }

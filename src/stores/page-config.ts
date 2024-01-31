@@ -21,8 +21,8 @@ export const usePageConfig = defineStore('pageConfig', () => {
     const pageConfig: PageConfig = reactive({
         // 是否黑暗模式
         isDark: false,
-        // 页面布局方式，可选值：<Default|Classic|LayoutsStreamline|Double>，
-        layoutMode: 'LayoutsDefault',
+        // 页面布局方式，可选值：<LayoutsDefault|LayoutsClassic|LayoutsStreamline|Double>，
+        layoutMode: 'LayoutsClassic',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
         // 左侧菜单展开折叠
@@ -69,11 +69,43 @@ export const usePageConfig = defineStore('pageConfig', () => {
         return colors[0]
     }
 
+    function onSetLayoutColor(data = pageConfig.layoutMode) {
+        // 切换布局时，如果是为默认配色方案，对菜单激活背景色重新赋值
+        const tempValue = pageConfig.isDark
+            ? { idx: 1, color: '#1d1e1f', newColor: '#141414' }
+            : { idx: 0, color: '#ffffff', newColor: '#f5f5f5' }
+        if (
+            data == 'LayoutsClassic' &&
+            pageConfig.headerBarBackground[tempValue.idx] == tempValue.color &&
+            pageConfig.headerBarTabActiveBackground[tempValue.idx] == tempValue.color
+        ) {
+            pageConfig.headerBarTabActiveBackground[tempValue.idx] = tempValue.newColor
+        } else if (
+            data == 'LayoutsDefault' &&
+            pageConfig.headerBarBackground[tempValue.idx] == tempValue.color &&
+            pageConfig.headerBarTabActiveBackground[tempValue.idx] == tempValue.newColor
+        ) {
+            pageConfig.headerBarTabActiveBackground[tempValue.idx] = tempValue.color
+        }
+
+        console.log(pageConfig.headerBarTabActiveBackground)
+    }
+
+    function setLayoutMode(mode) {
+        console.log(mode)
+
+        pageConfig.layoutMode = mode
+        if (mode === 'LayoutsStreamline') {
+            pageConfig.menuCollapse = false
+        }
+        onSetLayoutColor(mode)
+    }
+
     // menu宽度
     function menuWidth() {
         // 菜单是否折叠
         return pageConfig.menuCollapse ? '64px' : `${pageConfig.menuWidth}px`
     }
 
-    return { pageConfig, setPageConfig, getColorVal, menuWidth }
+    return { pageConfig, setPageConfig, getColorVal, menuWidth, setLayoutMode }
 })

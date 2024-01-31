@@ -1,20 +1,16 @@
 <script setup lang="ts">
-/**
- * 暗黑模式
- */
-const isDark = useDark()
-const toggleDark = () => useToggle(isDark)
-console.log('测试')
+import { usePageConfig } from '@/stores/page-config'
 
-onMounted(() => {
-    const arr = [1, 3, 4]
-    console.log(arr.at(-1))
-})
+const pageConfig = usePageConfig()
+function checkLayouts(layoutsType: string) {
+    pageConfig.setLayoutMode(layoutsType)
+}
 </script>
 
 <template>
     <div>
-        <el-switch v-model="isDark" @change="toggleDark" />
+        <el-button @click="checkLayouts('LayoutsClassic')">经典</el-button>
+        <el-button @click="checkLayouts('LayoutsDefault')">默认</el-button>
     </div>
 </template>
 <style scoped lang="scss"></style>

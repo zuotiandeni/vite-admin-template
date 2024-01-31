@@ -6,10 +6,11 @@
 
 <script setup lang="ts">
 import LayoutsDefaultNavBar from './nav-bar/DefaultNavBar.vue'
+import LayoutsClassicNavBar from './nav-bar/ClassicNavBar.vue'
 import { usePageConfig } from '@/stores/page-config'
 
 defineOptions({
-    components: { LayoutsDefaultNavBar }
+    components: { LayoutsDefaultNavBar, LayoutsClassicNavBar }
 })
 
 const config = usePageConfig()

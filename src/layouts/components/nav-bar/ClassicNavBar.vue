@@ -10,19 +10,26 @@
 
 <script setup lang="ts">
 import toggleDark from '@/utils/use-dark'
-import { usePageConfig } from '@/stores/page-config'
 import NavBarTabs from './NavBarTabs.vue'
+
+import { usePageConfig } from '@/stores/page-config'
 
 const pageConfig = usePageConfig()
 </script>
 
 <style lang="scss" scoped>
+.nav-menus {
+    display: flex;
+    margin-left: auto;
+    white-space: nowrap;
+}
+
 .nav-bar {
     display: flex;
-    height: 40px;
-    line-height: 40px;
-    margin: 20px var(--lcy-normal-spacing) 0 var(--lcy-normal-spacing);
-
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    background-color: v-bind('pageConfig.getColorVal("headerBarBackground")');
     :deep(.nav-bar-tabs) {
         display: flex;
         height: 100%;
@@ -34,15 +41,17 @@ const pageConfig = usePageConfig()
             padding: 0 20px;
             cursor: pointer;
             z-index: 1;
+            height: 100%;
             user-select: none;
-            opacity: 0.7;
             color: v-bind('pageConfig.getColorVal("headerBarTabColor")');
+            transition: all 0.2s;
+            -webkit-transition: all 0.2s;
             .close-icon {
                 padding: 2px;
                 margin: 2px 0 0 4px;
             }
             .close-icon:hover {
-                background: var(--lcy-color-primary-light);
+                background: var(--wti-color-primary-light);
                 color: var(--el-border-color) !important;
                 border-radius: 50%;
             }
@@ -50,23 +59,16 @@ const pageConfig = usePageConfig()
                 color: v-bind('pageConfig.getColorVal("headerBarTabActiveColor")');
             }
             &:hover {
-                opacity: 1;
+                background-color: v-bind('pageConfig.getColorVal("headerBarHoverBackground")');
             }
         }
         .nav-tabs-active-box {
             position: absolute;
-            height: 40px;
-            border-radius: var(--el-border-radius-base);
+            height: 50px;
             background-color: v-bind('pageConfig.getColorVal("headerBarTabActiveBackground")');
-            box-shadow: var(--el-box-shadow-light);
             transition: all 0.2s;
             -webkit-transition: all 0.2s;
         }
     }
-}
-.nav-menus {
-    display: flex;
-    margin-left: auto;
-    white-space: nowrap;
 }
 </style>
