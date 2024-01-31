@@ -42,6 +42,7 @@ export default defineConfig({
         // cssTarget: 默认与target一致
         chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
         minify: 'terser', // Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效
+        // https://terser.org/docs/options/#compress-options
         terserOptions: {
             compress: {
                 keep_infinity: true, // 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题
@@ -53,6 +54,10 @@ export default defineConfig({
             }
         }
     },
+    // https://esbuild.github.io/api/#drop
+    // esbuild: {
+    //     drop: ['console'] // 这个也可以去除console，还有更多配置
+    // },
     plugins: [
         vue(),
         vueJsx(),
