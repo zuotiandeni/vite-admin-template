@@ -91,7 +91,7 @@ export const usePageConfig = defineStore('pageConfig', () => {
         console.log(pageConfig.headerBarTabActiveBackground)
     }
 
-    function setLayoutMode(mode) {
+    function setLayoutMode(mode: string) {
         console.log(mode)
 
         pageConfig.layoutMode = mode
