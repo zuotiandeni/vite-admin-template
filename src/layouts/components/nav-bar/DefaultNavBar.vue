@@ -19,8 +19,8 @@ const pageConfig = usePageConfig()
 <style lang="scss" scoped>
 .nav-bar {
     display: flex;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     margin: 20px var(--lcy-normal-spacing) 0 var(--lcy-normal-spacing);
 
     :deep(.nav-bar-tabs) {
@@ -67,7 +67,9 @@ const pageConfig = usePageConfig()
 .nav-menus {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     height: 100%;
     margin-left: auto;
+    background-color: var(--lcy-menu-bg);
 }
 </style>

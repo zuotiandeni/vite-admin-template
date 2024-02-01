@@ -10,7 +10,10 @@ import { useNavTabs } from '@/stores/nav-tabs'
 import { cloneDeep } from 'lodash-es'
 import LayoutsDefault from './LayoutsDefault.vue'
 import LayoutsClassic from './LayoutsClassic.vue'
+import LayoutsDouble from './LayoutsDouble.vue'
 import LayoutsStreamline from './LayoutsStreamline.vue'
+
+import { setNavTabsWidth } from '@/utils/layouts'
 
 const pageConfig = usePageConfig()
 const navTabs = useNavTabs()
@@ -23,9 +26,11 @@ const initRoute = () => {
 
 onMounted(() => {
     initRoute()
+    setNavTabsWidth()
+    useEventListener(window, 'resize', setNavTabsWidth)
 })
 
 defineOptions({
-    components: { LayoutsDefault, LayoutsClassic, LayoutsStreamline }
+    components: { LayoutsDefault, LayoutsClassic, LayoutsStreamline, LayoutsDouble }
 })
 </script>

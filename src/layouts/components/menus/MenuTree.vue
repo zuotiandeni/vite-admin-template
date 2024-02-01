@@ -53,7 +53,7 @@ defineOptions({
 
 const onClickSubMenu = (menu: RouteRecordRaw) => {
     if (
-        ['LayoutsStreamline', 'Double'].includes(config.pageConfig.layoutMode) &&
+        ['LayoutsStreamline', 'LayoutsDouble'].includes(config.pageConfig.layoutMode) &&
         menu.children?.length
     ) {
         onClickMenu(menu.children[0])

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { usePageConfig } from '@/stores/page-config'
 import { useNavTabs } from '@/stores/nav-tabs'
+import { mainHeight as layoutMainScrollbarStyle } from '@/utils/layouts'
 
 const pageConfig = usePageConfig()
 const navTabs = useNavTabs()
@@ -36,7 +37,11 @@ watchEffect(() => {
 
 <template>
     <el-main class="layout-main">
-        <el-scrollbar class="layout-main-scrollbar" ref="mainScrollbarRef">
+        <el-scrollbar
+            class="layout-main-scrollbar"
+            :style="layoutMainScrollbarStyle()"
+            ref="mainScrollbarRef"
+        >
             <router-view v-slot="{ Component }">
                 <transition :name="pageConfig.pageConfig.mainAnimation as string" mode="out-in">
                     <keep-alive :include="state.keepAliveComponentNameList">

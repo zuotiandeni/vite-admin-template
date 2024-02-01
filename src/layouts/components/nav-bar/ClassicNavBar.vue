@@ -21,8 +21,10 @@ const pageConfig = usePageConfig()
 .nav-menus {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     height: 100%;
     margin-left: auto;
+    background-color: var(--lcy-menu-bg);
 }
 
 .nav-bar {

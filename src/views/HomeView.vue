@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { usePageConfig } from '@/stores/page-config'
+import { setNavTabsWidth } from '@/utils/layouts'
 
 const pageConfig = usePageConfig()
 function checkLayouts(layoutsType: string) {
     pageConfig.setLayoutMode(layoutsType)
+    // 重新计算导航栏宽度
+    nextTick(() => {
+        setNavTabsWidth()
+    })
 }
 </script>
 

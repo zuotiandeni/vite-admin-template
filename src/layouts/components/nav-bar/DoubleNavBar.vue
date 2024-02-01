@@ -1,9 +1,6 @@
 <template>
-    <div class="layouts-menu-horizontal">
-        <div class="menu-horizontal-logo" v-if="pageConfig.pageConfig.menuShowTopBar">
-            <LayoutLogo />
-        </div>
-        <el-scrollbar ref="horizontalMenusRef" class="horizontal-menus-scrollbar">
+    <div class="layouts-menu-horizontal-double">
+        <el-scrollbar ref="horizontalMenusRef" class="double-menus-scrollbar">
             <el-menu
                 class="menu-horizontal"
                 mode="horizontal"
@@ -21,18 +18,17 @@
 </template>
 
 <script setup lang="ts">
+import { currentRouteTopActivity } from '../menus/helper'
 import toggleDark from '@/utils/use-dark'
-import LayoutLogo from '../LayoutLogo.vue'
-import MenuTree from './MenuTree.vue'
-import { usePageConfig } from '@/stores/page-config'
+import MenuTree from '../menus/MenuTree.vue'
 import { useNavTabs } from '@/stores/nav-tabs'
+import { usePageConfig } from '@/stores/page-config'
 import { uuid } from '@/utils/random'
-
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 const horizontalMenusRef = ref()
 
-const pageConfig = usePageConfig()
+const config = usePageConfig()
 const navTabs = useNavTabs()
 const route = useRoute()
 
@@ -42,21 +38,29 @@ const state = reactive({
 })
 
 const menus = computed(() => {
+    // eslint-disable-next-line vue/no-side-effects-in-computed-properties
     state.menuKey = uuid()
     return navTabs.navState.tabsViewRoutes
 })
 
 // 激活当前路由的菜单
 const currentRouteActive = (currentRoute: RouteLocationNormalizedLoaded) => {
-    state.defaultActive = currentRoute.path
+    console.log(currentRoute)
+
+    let routeChildren = currentRouteTopActivity(currentRoute.path, navTabs.navState.tabsViewRoutes)
+    console.log(currentRoute.path, navTabs.navState.tabsViewRoutes)
+
+    if (routeChildren) state.defaultActive = currentRoute.path
 }
 
 // 滚动条滚动到激活菜单所在位置
 const verticalMenusScroll = () => {
     nextTick(() => {
-        let activeMenu = document.querySelector('.el-menu.menu-horizontal li.is-active')
+        let activeMenu: HTMLElement | null = document.querySelector(
+            '.el-menu.menu-horizontal li.is-active'
+        )
         if (!activeMenu) return false
-        horizontalMenusRef.value?.setScrollTop((activeMenu as HTMLElement).offsetTop)
+        horizontalMenusRef.value?.setScrollTop(activeMenu.offsetTop)
     })
 }
 
@@ -71,29 +75,22 @@ onBeforeRouteUpdate((to) => {
 </script>
 
 <style scoped lang="scss">
-.layouts-menu-horizontal {
+.layouts-menu-horizontal-double {
     display: flex;
     align-items: center;
-    width: 100vw;
     height: 60px;
-    background-color: var(--lcy-bg-color-overlay);
+    background-color: var(--wti-bg-color-overlay);
     border-bottom: solid 1px var(--el-color-info-light-8);
 }
-.menu-horizontal-logo {
-    width: 180px;
-    &:hover {
-        background-color: v-bind('pageConfig.getColorVal("headerBarHoverBackground")');
-    }
-}
-.horizontal-menus-scrollbar {
-    flex: 1;
+.double-menus-scrollbar {
+    width: 70vw;
     height: 60px;
 }
 .menu-horizontal {
     border: none;
-    --el-menu-bg-color: v-bind('pageConfig.getColorVal("menuBackground")');
-    --el-menu-text-color: v-bind('pageConfig.getColorVal("menuColor")');
-    --el-menu-active-color: v-bind('pageConfig.getColorVal("menuActiveColor")');
+    --el-menu-bg-color: v-bind('config.getColorVal("menuBackground")');
+    --el-menu-text-color: v-bind('config.getColorVal("menuColor")');
+    --el-menu-active-color: v-bind('config.getColorVal("menuActiveColor")');
 }
 
 .el-sub-menu .icon,
@@ -108,7 +105,7 @@ onBeforeRouteUpdate((to) => {
     color: var(--el-menu-active-color) !important;
 }
 .el-menu-item.is-active {
-    background-color: v-bind('pageConfig.getColorVal("menuActiveBackground")');
+    background-color: v-bind('config.getColorVal("menuActiveBackground")');
 }
 
 .nav-menus {
@@ -118,5 +115,6 @@ onBeforeRouteUpdate((to) => {
     height: 100%;
     margin-left: auto;
     background-color: var(--lcy-menu-bg);
+    flex: 1;
 }
 </style>

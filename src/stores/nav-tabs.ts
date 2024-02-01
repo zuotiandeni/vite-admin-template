@@ -22,6 +22,7 @@ type NavState = {
     activeRoute: RouteLocationNormalizedLoaded | null
     tabsView: RouteLocationNormalizedLoaded[]
     tabsViewRoutes: RouteRecordRaw[]
+    tabFullScreen: boolean
 }
 
 export const useNavTabs = defineStore('navTabs', () => {
@@ -33,7 +34,9 @@ export const useNavTabs = defineStore('navTabs', () => {
         // tab列表
         tabsView: [],
         // 从后台加载到的菜单路由列表
-        tabsViewRoutes: []
+        tabsViewRoutes: [],
+        // 是否全屏
+        tabFullScreen: false
     })
 
     // 添加tab

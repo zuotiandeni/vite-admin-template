@@ -22,16 +22,16 @@
 <script setup lang="ts">
 import { usePageConfig } from '@/stores/page-config'
 import { Fold, Expand } from '@element-plus/icons-vue'
-// import { setNavTabsWidth } from '@/utils/layout'
+import { setNavTabsWidth } from '@/utils/layouts'
 
 const config = usePageConfig()
 
 const onMenuCollapse = function () {
     config.setPageConfig('menuCollapse', !config.pageConfig.menuCollapse)
     // 等待侧边栏动画结束后重新计算导航栏宽度
-    // setTimeout(() => {
-    //     setNavTabsWidth()
-    // }, 350)
+    setTimeout(() => {
+        setNavTabsWidth()
+    }, 350)
 }
 
 defineOptions({

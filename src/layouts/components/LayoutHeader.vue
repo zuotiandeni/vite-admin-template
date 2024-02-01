@@ -8,11 +8,17 @@
 import LayoutsDefaultNavBar from './nav-bar/DefaultNavBar.vue'
 import LayoutsClassicNavBar from './nav-bar/ClassicNavBar.vue'
 import LayoutsStreamlineNavBar from './menus/MenuHorizontal.vue'
+import LayoutsDoubleNavBar from './nav-bar/DoubleNavBar.vue'
 
 import { usePageConfig } from '@/stores/page-config'
 
 defineOptions({
-    components: { LayoutsDefaultNavBar, LayoutsClassicNavBar, LayoutsStreamlineNavBar }
+    components: {
+        LayoutsDefaultNavBar,
+        LayoutsClassicNavBar,
+        LayoutsStreamlineNavBar,
+        LayoutsDoubleNavBar
+    }
 })
 
 const config = usePageConfig()

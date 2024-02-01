@@ -21,8 +21,8 @@ export const usePageConfig = defineStore('pageConfig', () => {
     const pageConfig: PageConfig = reactive({
         // 是否黑暗模式
         isDark: false,
-        // 页面布局方式，可选值：<LayoutsDefault|LayoutsClassic|LayoutsStreamline|Double>，
-        layoutMode: 'LayoutsStreamline',
+        // 页面布局方式，可选值：<LayoutsDefault|LayoutsClassic|LayoutsStreamline|LayoutsDouble>，
+        layoutMode: 'LayoutsDouble',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
         // 左侧菜单展开折叠

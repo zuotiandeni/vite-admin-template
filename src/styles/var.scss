@@ -2,7 +2,6 @@
 @use 'sass:map';
 @use 'mixins.scss' as *;
 
-
 $normal-spacing: 16px;
 $small-spacing: 8px;
 $big-spacing: 24px;
@@ -15,7 +14,7 @@ $bg-color: () !default;
 $bg-color: map.merge(
     (
         '': #f5f5f5,
-        'overlay': #ffffff,
+        'overlay': #ffffff
     ),
     $bg-color
 );
@@ -24,10 +23,12 @@ $bg-color: map.merge(
 $border-color: () !default;
 $border-color: map.merge(
     (
-        '': #f6f6f6,
+        '': #f6f6f6
     ),
     $border-color
 );
+
+$menu-bg: #ffffff;
 
 :root {
     @include set-css-var-value('color-primary-light', $primary-light);
@@ -36,4 +37,5 @@ $border-color: map.merge(
     @include set-css-var-value('big-spacing', $big-spacing);
     @include set-component-css-var('bg-color', $bg-color);
     @include set-component-css-var('border-color', $border-color);
+    --lcy-menu-bg: #ffffff;
 }

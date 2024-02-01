@@ -8,7 +8,7 @@ $bg-color: () !default;
 $bg-color: map.merge(
     (
         '': #141414,
-        'overlay': #1d1e1f,
+        'overlay': #1d1e1f
     ),
     $bg-color
 );
@@ -31,14 +31,15 @@ $bg-color: {
 $border-color: () !default;
 $border-color: map.merge(
     (
-        '': #58585b,
+        '': #58585b
     ),
     $border-color
 );
 
+// $menu-bg:
+
 html.dark {
     @include set-component-css-var('bg-color', $bg-color);
     @include set-component-css-var('border-color', $border-color);
+    --lcy-menu-bg: #1d1e1f;
 }
-
-
