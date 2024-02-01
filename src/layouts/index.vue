@@ -23,9 +23,8 @@ const initRoute = () => {
     console.log(staticRoutes[0].children)
     navTabs.setTabsViewRoutes(cloneDeep(staticRoutes[0].children))
 }
-
+initRoute()
 onMounted(() => {
-    initRoute()
     setNavTabsWidth()
     useEventListener(window, 'resize', setNavTabsWidth)
 })
