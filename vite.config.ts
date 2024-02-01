@@ -17,7 +17,11 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import IconsResolver from 'unplugin-icons/resolver'
 import Icons from 'unplugin-icons/vite'
 
+// 此项分割包的配置会被 rollupOptions.output.manualChunks覆盖
 import { splitVendorChunkPlugin } from 'vite'
+
+// 图片资源压缩
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
 // const pathSrc = path.resolve(__dirname, 'src')
 
@@ -40,8 +44,12 @@ export default defineConfig({
         // 使用 lightningcss 压缩 css
         // cssMinify: 'lightningcss'，默认使用esbuild
         // cssTarget: 默认与target一致
+        // 小于此阈值的导入或引用资源将内联为 base64 编码(默认值，4096)
+        assetsInlineLimit: 4096,
         chunkSizeWarningLimit: 2000, // 消除打包大小超过500kb警告
+        // Vite 使用 Terser 这个 JavaScript 压缩工具来对输出的代码进行压缩优化。不会和rollupOptions.output.compact冲突
         minify: 'terser', // Vite 2.6.x 以上需要配置 minify: "terser", terserOptions 才能生效
+        sourcemap: false,
         // https://terser.org/docs/options/#compress-options
         terserOptions: {
             compress: {
@@ -52,6 +60,22 @@ export default defineConfig({
             format: {
                 comments: false // 删除注释
             }
+        },
+        rollupOptions: {
+            output: {
+                assetFileNames: 'assets/[name].[hash][extname]',
+                entryFileNames: 'js/[name].[hash].js',
+                chunkFileNames: 'js/[name].[hash].js',
+                // 用于配置 Rollup 输出的代码是否启用紧凑模式（即是否移除注释、空格、换行等）
+                compact: true
+                // 手动指定代码分块（chunks）。在这里，将 'vue'、'vue-router' 和 'pinia' 这三个库手动分块，以便更好地利用浏览器的缓存机制。
+                // 此项会 会覆盖 splitVendorChunkPlugin 选用一个即可
+                // manualChunks: {
+                //     vue: ['vue', 'vue-router', 'pinia', 'lodash-es']
+                // }
+            }
+            // 此选项会将列出来的包在打包时排除在外
+            // external: ['vue', 'vue-router', 'pinia', 'lodash-es']
         }
     },
     // https://esbuild.github.io/api/#drop
@@ -103,6 +127,9 @@ export default defineConfig({
             autoInstall: true
         }),
         // elementPlus按需加载 end
+        // 压缩图片
+        ViteImageOptimizer(),
+        // 此项分割包的配置会被 rollupOptions.output.manualChunks覆盖
         splitVendorChunkPlugin(),
         UnoCSS()
     ],
@@ -111,7 +138,7 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url))
         },
         // 排除一些会重复依赖的包
-        dedupe: ['vue', '@vue/runtime-core']
+        dedupe: ['vue', '@vue/runtime-core', 'lodash-es']
     },
     css: {
         // // 默认为postcss，设置为lightningcss，则postcss不会有作用
