@@ -66,7 +66,8 @@ const pageConfig = usePageConfig()
 }
 .nav-menus {
     display: flex;
+    align-items: center;
+    height: 100%;
     margin-left: auto;
-    white-space: nowrap;
 }
 </style>

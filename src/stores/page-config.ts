@@ -22,13 +22,16 @@ export const usePageConfig = defineStore('pageConfig', () => {
         // 是否黑暗模式
         isDark: false,
         // 页面布局方式，可选值：<LayoutsDefault|LayoutsClassic|LayoutsStreamline|Double>，
-        layoutMode: 'LayoutsClassic',
+        layoutMode: 'LayoutsStreamline',
         // 后台主页面切换动画，可选值<slide-right|slide-left|el-fade-in-linear|el-fade-in|el-zoom-in-center|el-zoom-in-top|el-zoom-in-bottom>
         mainAnimation: 'slide-right',
         // 左侧菜单展开折叠
         menuCollapse: false,
         // 菜单的宽度
         menuWidth: 260,
+
+        // 显示菜单栏顶栏(LOGO)
+        menuShowTopBar: true,
 
         /* 侧边菜单 */
         // 侧边菜单背景色

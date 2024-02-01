@@ -8,7 +8,7 @@
         />
         <div v-if="!config.pageConfig.menuCollapse" class="website-name">系统模板演示站</div>
         <el-icon
-            v-if="config.pageConfig.layoutMode !== 'Streamline'"
+            v-if="config.pageConfig.layoutMode !== 'LayoutsStreamline'"
             :class="!config.pageConfig.menuCollapse ? 'fold' : 'unfold'"
             @click="onMenuCollapse"
         >

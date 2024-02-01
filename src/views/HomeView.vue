@@ -11,6 +11,7 @@ function checkLayouts(layoutsType: string) {
     <div>
         <el-button @click="checkLayouts('LayoutsClassic')">经典</el-button>
         <el-button @click="checkLayouts('LayoutsDefault')">默认</el-button>
+        <el-button @click="checkLayouts('LayoutsStreamline')">单栏</el-button>
     </div>
 </template>
 <style scoped lang="scss"></style>

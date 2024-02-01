@@ -52,7 +52,10 @@ defineOptions({
 })
 
 const onClickSubMenu = (menu: RouteRecordRaw) => {
-    if (['Streamline', 'Double'].includes(config.pageConfig.layoutMode) && menu.children?.length) {
+    if (
+        ['LayoutsStreamline', 'Double'].includes(config.pageConfig.layoutMode) &&
+        menu.children?.length
+    ) {
         onClickMenu(menu.children[0])
     }
 }

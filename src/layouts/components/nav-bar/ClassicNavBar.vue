@@ -20,8 +20,9 @@ const pageConfig = usePageConfig()
 <style lang="scss" scoped>
 .nav-menus {
     display: flex;
+    align-items: center;
+    height: 100%;
     margin-left: auto;
-    white-space: nowrap;
 }
 
 .nav-bar {
@@ -51,7 +52,7 @@ const pageConfig = usePageConfig()
                 margin: 2px 0 0 4px;
             }
             .close-icon:hover {
-                background: var(--wti-color-primary-light);
+                background: var(--lcy-color-primary-light);
                 color: var(--el-border-color) !important;
                 border-radius: 50%;
             }
