@@ -32,7 +32,6 @@
 <script setup lang="ts">
 import { usePageConfig } from '@/stores/page-config'
 import { onClickMenu } from '@/utils/router'
-import type { RouteRecordRaw } from 'vue-router'
 import { HomeFilled } from '@element-plus/icons-vue'
 
 const config = usePageConfig()

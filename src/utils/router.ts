@@ -1,6 +1,6 @@
 import { ElMessage } from 'element-plus'
 import 'element-plus/es/components/message/style/css'
-import { isNavigationFailure, NavigationFailureType, type RouteRecordRaw } from 'vue-router'
+import { isNavigationFailure, NavigationFailureType } from 'vue-router'
 import router from '@/router/index'
 
 /**

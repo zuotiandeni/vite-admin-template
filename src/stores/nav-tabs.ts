@@ -1,5 +1,4 @@
 import { cloneDeep, isEmpty } from 'lodash-es'
-import type { RouteLocationNormalizedLoaded, RouteRecordRaw } from 'vue-router'
 /**
  * 对iframe的url进行编码
  */

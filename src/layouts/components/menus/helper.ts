@@ -1,7 +1,6 @@
 /**
  * 寻找当前路由在顶栏菜单中的数据
  */
-import type { RouteRecordRaw } from 'vue-router'
 export const currentRouteTopActivity = (path: string, menus: RouteRecordRaw[]) => {
     for (let i = 0; i < menus.length; i++) {
         const item = menus[i]

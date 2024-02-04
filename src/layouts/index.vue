@@ -14,14 +14,13 @@ import LayoutsDouble from './LayoutsDouble.vue'
 import LayoutsStreamline from './LayoutsStreamline.vue'
 
 import { setNavTabsWidth } from '@/utils/layouts'
-
 const pageConfig = usePageConfig()
 const navTabs = useNavTabs()
 const initRoute = () => {
     // TODO: 从后台获取动态路由列表...
     // 处理路由数据
     console.log(staticRoutes[0].children)
-    navTabs.setTabsViewRoutes(cloneDeep(staticRoutes[0].children))
+    navTabs.setTabsViewRoutes(cloneDeep(staticRoutes[0].children) as RouteRecordRaw[])
 }
 initRoute()
 onMounted(() => {
