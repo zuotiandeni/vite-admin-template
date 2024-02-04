@@ -24,6 +24,7 @@ const pageConfig = usePageConfig()
     height: 100%;
     margin-left: auto;
     background-color: var(--lcy-menu-bg);
+    padding: 0 20px;
 }
 
 .nav-bar {

@@ -115,5 +115,6 @@ onBeforeRouteUpdate((to) => {
     margin-left: auto;
     background-color: var(--lcy-menu-bg);
     flex: 1;
+    padding: 0 20px;
 }
 </style>
