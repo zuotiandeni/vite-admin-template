@@ -11,7 +11,7 @@
             </el-menu>
         </el-scrollbar>
         <div class="nav-menus">
-            <div @click="toggleDark()">黑夜模式切换</div>
+            <UseDarkComp />
             <div>admin</div>
         </div>
     </div>
@@ -19,7 +19,6 @@
 
 <script setup lang="ts">
 import { currentRouteTopActivity } from '../menus/helper'
-import toggleDark from '@/utils/use-dark'
 import MenuTree from '../menus/MenuTree.vue'
 import { useNavTabs } from '@/stores/nav-tabs'
 import { usePageConfig } from '@/stores/page-config'

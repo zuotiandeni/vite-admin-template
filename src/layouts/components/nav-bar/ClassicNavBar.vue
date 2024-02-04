@@ -2,14 +2,13 @@
     <div class="nav-bar">
         <NavBarTabs />
         <div class="nav-menus">
-            <div @click="toggleDark()">黑夜模式切换</div>
+            <UseDarkComp />
             <div>admin</div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import toggleDark from '@/utils/use-dark'
 import NavBarTabs from './NavBarTabs.vue'
 
 import { usePageConfig } from '@/stores/page-config'

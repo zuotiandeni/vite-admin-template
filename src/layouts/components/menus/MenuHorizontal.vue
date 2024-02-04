@@ -14,14 +14,13 @@
             </el-menu>
         </el-scrollbar>
         <div class="nav-menus">
-            <div @click="toggleDark()">黑夜模式切换</div>
+            <UseDarkComp />
             <div>admin</div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import toggleDark from '@/utils/use-dark'
 import LayoutLogo from '../LayoutLogo.vue'
 import MenuTree from './MenuTree.vue'
 import { usePageConfig } from '@/stores/page-config'

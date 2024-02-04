@@ -73,7 +73,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
                 </el-form-item>
             </el-form>
         </div>
-        <div class="login-box-footer">&copy; 2024 lcy. All rights reserved.</div>
+        <div class="login-box-footer">Copyright &copy; 2024 lcy. All rights reserved.</div>
     </div>
 </template>
 <style scoped lang="scss">
